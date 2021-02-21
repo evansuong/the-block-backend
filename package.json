@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/evansuong/the-block-backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase": "^8.2.9",
     "node-fetch": "^2.6.1",
