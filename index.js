@@ -4,7 +4,7 @@ require("firebase/storage");
 const express = require("express");
 var app = express(); // Express();
 app.use(express.json());
-const port = 3000;
+const port = 3001;
 const fetch = require("node-fetch");
 const server = "localhost:3000";
 

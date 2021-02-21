@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
+const { ReviewsAPI } = require("../model/Reviews");
+
+
 
 router.use(
   express.urlencoded({
@@ -15,8 +18,9 @@ router.use(cors());
 router.post("/", async (req, res) => {
   console.log('review post request received');
   console.log('request body: ', req.body);
+  let { username, placeId, rating, review } = req.body;
 
-  //let postStatus = post reviews
+  let rev_id = ReviewsAPI.createReview(username, placeId, rating, review);
 
   try {
     res.status(200).json(postStatus);

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
+const { RestaurantsAPI } = require("../model/Restaurants");
 
 router.use(
   express.urlencoded({
@@ -12,13 +13,13 @@ router.use(cors());
 
 router.get("/:city", async (req, res) => {
   console.log("city: ", req.params.city);
-
-  // let places = get places function
-  try {
-    res.status(200).json(places);
-  } catch (err) {
-    res.status(400).send(`An error occurred: ${err}`);
-  }
+  let city = req.params.city;
+  city = "restaurants+in+" + city;
+  let response = await RestaurantsAPI.searchRestaurants(city, "");
+  let places = [];
+  Promise.all(response).then((rev) => {
+    res.status(200).json(rev);
+  });
 });
 
 

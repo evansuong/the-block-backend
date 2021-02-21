@@ -18,6 +18,8 @@ const storageRef = storage.ref();
 function retrieveRestaurant(rest, restaurant_db) {
     return new Promise((resolve, reject) => {
         // Retrieve fields of the review from the database
+        curr_place_name = rest.name;
+        curr_addy = rest.formatted_address;
         // Get place_id
         curr_place_id = rest.place_id;
         // Get image url
@@ -37,7 +39,9 @@ function retrieveRestaurant(rest, restaurant_db) {
         // Create a json object for each review
         rest_json = {
             place_id: curr_place_id,
+            place_name: curr_place_name,
             photo_ref: curr_image,
+            place_address: curr_addy,
             avg_rating: curr_rating,
             reviews: curr_reviews,
             longitude: curr_lng,
