@@ -10,6 +10,7 @@ const server = "localhost:3000";
 // Import
 const Reviews = require("./model/Reviews.js");
 const Users = require("./model/Users.js");
+const Restaurants = require("./model/Restaurants.js");
 
 const users = require("./routes/usersRoutes");
 
@@ -19,6 +20,22 @@ function listNamesIds(data) {
         console.log(restaurant.name);
     });
 }
+
+// async function testCreateReview(username, placeId, rating, review) {
+//     reviewId = await Reviews.ReviewsAPI.createReview(
+//         username,
+//         placeId,
+//         rating,
+//         review
+//     );
+//     console.log(JSON.stringify(reviewId));
+// }
+// testCreateReview(
+//     "johndoe",
+//     "ChIJdxxU1WeuEmsR11c4fswX-I",
+//     1,
+//     "I hated Aria Restaurant Sydney!"
+// );
 
 // restaurant: Google place API json object for a restaurant
 // return -> a list of reviews for that restaurant
@@ -32,16 +49,34 @@ async function testGetReviews() {
     });
 }
 
-// THIS IS HOW THE FRONTEND WILL CALL
-// async function itWorks() {
-//     // const user = await Users.UsersAPI.login("tyus", "1234");
-//     // console.log("user login call returns: ", user);
-
-//     const reviews = await testGetReviews();
-//     console.log("testGetReviews call returns: " + reviews.reviews[0].author);
+// async function testGetRestaurants() {
+//     var rests = await Restaurants.RestaurantsAPI.searchRestaurants(
+//         "Sydney",
+//         ""
+//     );
+//     return Promise.all([rests]).then((rest) => {
+//         return rests;
+//     });
+// }
+// async function testGetToken() {
+//     return await Restaurants.RestaurantsAPI.getNextPage("Sydney", "");
 // }
 
-// itWorks();
+// THIS IS HOW THE FRONTEND WILL CALL
+async function itWorks() {
+    // const user = await Users.UsersAPI.login("tyus", "1234");
+    // console.log("user login call returns: ", user);
+
+    const reviews = await testGetReviews();
+    console.log("testGetReviews call returns: " + reviews);
+
+    // const rests = await testGetRestaurants();
+    // console.log("testGetRestaurants call returns: " + rests);
+    // const token = await testGetToken();
+    // console.log("testGetToken call returns: " + token);
+}
+
+itWorks();
 
 // console.log("usersAPI call returns: " + JSON.parse(Users.UsersAPI.login("tysu", "1234")));
 
@@ -77,7 +112,7 @@ const password = "1234";
 
 // app.get("/")
 
-app.use("/users", users)
+app.use("/users", users);
 
 app.get(`${server}/users/login/${username},${password}`, (req, res) => {
     // res.send("Hello World");

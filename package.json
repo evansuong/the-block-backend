@@ -26,6 +26,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "firebase": "^8.2.9",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "uuid": "^8.3.2"
   }
 }
