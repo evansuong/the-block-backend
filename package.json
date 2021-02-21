@@ -2,8 +2,9 @@
   "name": "the-block-backend",
   "version": "1.0.0",
   "description": "The Block backend",
-  "main": "index.js",
+  "main": "index.js",  
   "scripts": {
+    "start": "node index.js",
     "test": "test"
   },
   "repository": {
@@ -16,13 +17,15 @@
     "food",
     "recommendation"
   ],
-  "author": "Alana Klopstein, Tyus Liu, Evan Suong",
+  "author": "Alex Chow, Alana Klopstein, Tyus Liu, Evan Suong",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/evansuong/the-block-backend/issues"
   },
   "homepage": "https://github.com/evansuong/the-block-backend#readme",
   "dependencies": {
-    "firebase": "^8.2.9"
+    "express": "^4.17.1",
+    "firebase": "^8.2.9",
+    "node-fetch": "^2.6.1"
   }
 }
