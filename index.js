@@ -8,6 +8,7 @@ const fetch = require("node-fetch");
 
 // Import
 const Reviews = require("./model/Reviews.js");
+const Users = require("./model/Users.js");
 
 // GET , PUT, POST, DELETE
 function listNamesIds(data) {
@@ -23,12 +24,23 @@ async function testGetReviews() {
         "ChIJdxxU1WeuEmsR11c4fswX-Io"
     );
 
-    Promise.all(revs).then((rev) => {
-        console.log("rev: " + rev);
-        return rev;
+    return Promise.all(revs).then((rev) => {
+        return { reviews: rev };
     });
 }
-console.log("testGetReviews call returns: " + testGetReviews());
+
+// THIS IS HOW THE FRONTEND WILL CALL
+async function itWorks() {
+    const user = await Users.UsersAPI.login("tyus", "1234");
+    console.log("user login call returns: ", user);
+    
+    // const reviews = await testGetReviews();
+    // console.log("testGetReviews call returns: " + reviews.reviews[0].author);
+}
+
+itWorks();
+
+// console.log("usersAPI call returns: " + JSON.parse(Users.UsersAPI.login("tysu", "1234")));
 
 // async function testGetReviews2() {
 //     await testGetReviews().then((hello) => {

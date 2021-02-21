@@ -2,7 +2,7 @@
   "name": "the-block-backend",
   "version": "1.0.0",
   "description": "The Block backend",
-  "main": "index.js",  
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "test"
