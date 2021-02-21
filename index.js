@@ -3,6 +3,7 @@ require("firebase/storage");
 
 const express = require("express");
 var app = express(); // Express();
+app.use(express.json());
 const port = 3000;
 const fetch = require("node-fetch");
 const server = "localhost:3000";
@@ -11,7 +12,10 @@ const server = "localhost:3000";
 const Reviews = require("./model/Reviews.js");
 const Users = require("./model/Users.js");
 
+
 const users = require("./routes/usersRoutes");
+const reviews = require("./routes/reviewsRoutes");
+const places = require("./routes/placesRoutes");
 
 // GET , PUT, POST, DELETE
 function listNamesIds(data) {
@@ -78,10 +82,13 @@ const password = "1234";
 // app.get("/")
 
 app.use("/users", users)
+app.use("/reviews", reviews)
+app.use("/places", places)
 
 app.get(`${server}/users/login/${username},${password}`, (req, res) => {
     // res.send("Hello World");
+    console.log('hi')
     console.log(req.json());
 });
 
-app.listen(port, () => console.log("listening on port" + port));
+app.listen(port, () => console.log("listening on port " + port));
