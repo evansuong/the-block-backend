@@ -5,10 +5,13 @@ const express = require("express");
 var app = express(); // Express();
 const port = 3000;
 const fetch = require("node-fetch");
+const server = "localhost:3000";
 
 // Import
 const Reviews = require("./model/Reviews.js");
 const Users = require("./model/Users.js");
+
+const users = require("./routes/usersRoutes");
 
 // GET , PUT, POST, DELETE
 function listNamesIds(data) {
@@ -30,15 +33,15 @@ async function testGetReviews() {
 }
 
 // THIS IS HOW THE FRONTEND WILL CALL
-async function itWorks() {
-    const user = await Users.UsersAPI.login("tyus", "1234");
-    console.log("user login call returns: ", user);
-    
-    // const reviews = await testGetReviews();
-    // console.log("testGetReviews call returns: " + reviews.reviews[0].author);
-}
+// async function itWorks() {
+//     // const user = await Users.UsersAPI.login("tyus", "1234");
+//     // console.log("user login call returns: ", user);
 
-itWorks();
+//     const reviews = await testGetReviews();
+//     console.log("testGetReviews call returns: " + reviews.reviews[0].author);
+// }
+
+// itWorks();
 
 // console.log("usersAPI call returns: " + JSON.parse(Users.UsersAPI.login("tysu", "1234")));
 
@@ -65,8 +68,20 @@ itWorks();
 //     .then((response) => response.json())
 //     .then((data) => listNamesIds(data.results));
 
-app.get("/", (req, res) => {
-    res.send("Hello World");
+const username = "tysu";
+const password = "1234";
+
+// fetch(`${server}/login/${username},${password}`)
+//     .then(res => res.json())
+//     .then(data => console.log(data));
+
+// app.get("/")
+
+app.use("/users", users)
+
+app.get(`${server}/users/login/${username},${password}`, (req, res) => {
+    // res.send("Hello World");
+    console.log(req.json());
 });
 
 app.listen(port, () => console.log("listening on port" + port));

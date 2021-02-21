@@ -11,11 +11,19 @@ const users = db.collection("users");
 const storage = firebase.storage();
 const storageRef = storage.ref();
 
-const UsersAPI = {
+const PlacesAPI = {
 
     // verifies user
-    login: async function (username, password) {
-        // Get the credentials
+    searchPlaces: async function (query) {
+        // replace all spaces with %20's
+        query = query.replace(/ /g, "%20");
+
+        fetch(
+            `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=AIzaSyAIhiPvfSCCmtoxJ4eFuCaWeW3onqe6Lkk`
+        )
+            .then((response) => response.json())
+            .then((data) => listNamesIds(data.results));
+            
         var user = await users.where("username", "==", username);
         user = await user.where("password", "==", password).get();
         
